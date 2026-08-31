@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luna is turning 5!</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sky: #5AC8E0;
+    --pink: #FF6FA5;
+    --navy: #1B2A4A;
+    --moon-glow: #FFF4D6;
+    --lavender: #C9B6E4;
+    --white: #FFFFFF;
+    --ink: #1B2A4A;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:'Nunito', sans-serif;
+    color:var(--ink);
+    background: linear-gradient(180deg, var(--navy) 0%, var(--sky) 38%, var(--pink) 100%);
+    min-height:100vh;
+  }
+  .stars{
+    position:absolute; top:0; left:0; width:100%; height:340px;
+    overflow:hidden; pointer-events:none;
+  }
+  .stars span{
+    position:absolute; border-radius:50%; background:var(--moon-glow);
+    opacity:.85;
+  }
+  @media (prefers-reduced-motion: no-preference){
+    .stars span{ animation: twinkle 3.5s ease-in-out infinite; }
+    .moon-badge{ animation: float 4.5s ease-in-out infinite; }
+  }
+  @keyframes twinkle{ 0%,100%{opacity:.3;} 50%{opacity:1;} }
+  @keyframes float{ 0%,100%{ transform:translateY(0) rotate(-6deg);} 50%{ transform:translateY(-10px) rotate(6deg);} }
+
+  main{
+    max-width:560px; margin:0 auto; padding:56px 24px 64px;
+    position:relative; z-index:1;
+  }
+  .hero{ text-align:center; color:var(--white); margin-bottom:36px; }
+  .moon-badge{
+    display:inline-block; font-size:44px; margin-bottom:8px;
+    filter: drop-shadow(0 0 14px rgba(255,244,214,.7));
+  }
+  .hero h1{
+    font-family:'Fredoka', sans-serif; font-weight:700;
+    font-size:clamp(32px,8vw,44px); margin:4px 0 6px; letter-spacing:.5px;
+    text-shadow: 0 3px 0 rgba(27,42,74,.25);
+  }
+  .hero .subtitle{
+    font-size:18px; font-weight:600; margin:0; opacity:.95;
+  }
+
+  .card{
+    background:var(--white);
+    border-radius:28px;
+    padding:28px 24px;
+    box-shadow: 0 18px 40px rgba(27,42,74,.22);
+    margin-bottom:24px;
+  }
+
+  .info-grid{ display:grid; gap:16px; }
+  .info-item{ display:flex; gap:14px; align-items:flex-start; }
+  .info-icon{
+    font-size:22px; flex-shrink:0; width:38px; height:38px;
+    display:flex; align-items:center; justify-content:center;
+    background: linear-gradient(135deg,var(--sky),var(--lavender));
+    border-radius:12px;
+  }
+  .info-label{
+    display:block; font-size:12px; text-transform:uppercase; letter-spacing:.08em;
+    font-weight:800; color:var(--pink); margin-bottom:2px;
+  }
+  .info-value{ display:block; font-size:16px; font-weight:700; line-height:1.35; }
+  .info-note{
+    margin-top:18px; padding-top:18px; border-top:2px dashed var(--lavender);
+    font-size:15px; font-weight:600; line-height:1.5;
+  }
+  .deadline{
+    margin-top:14px; text-align:center; font-family:'Fredoka',sans-serif;
+    background: var(--moon-glow); color:var(--navy);
+    border-radius:16px; padding:10px 14px; font-size:15px; font-weight:600;
+  }
+
+  .photo-frame{
+    border-radius:24px; overflow:hidden; margin-bottom:24px;
+    border: 6px solid var(--white);
+    box-shadow: 0 18px 40px rgba(27,42,74,.22);
+    aspect-ratio: 4/3;
+    display:flex; align-items:center; justify-content:center;
+    background: linear-gradient(135deg,var(--lavender),var(--pink));
+    color:var(--white); font-weight:700; text-align:center; padding:20px;
+  }
+  .photo-frame img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+  h2{
+    font-family:'Fredoka', sans-serif; font-weight:600;
+    font-size:24px; margin:0 0 16px; color:var(--navy);
+  }
+  label{ display:block; font-weight:700; font-size:14px; margin-bottom:16px; }
+  input{
+    width:100%; margin-top:6px; padding:12px 14px;
+    border:2px solid #E7E1F5; border-radius:12px;
+    font-family:'Nunito',sans-serif; font-size:16px;
+    background:#FBFAFF;
+  }
+  input:focus{
+    outline:3px solid var(--sky); outline-offset:1px; border-color:var(--sky);
+  }
+  button{
+    width:100%; margin-top:6px; padding:15px;
+    border:none; border-radius:16px; cursor:pointer;
+    font-family:'Fredoka',sans-serif; font-size:18px; font-weight:600;
+    color:var(--white);
+    background: linear-gradient(135deg, var(--pink), var(--sky));
+    display:flex; align-items:center; justify-content:center; gap:10px;
+    box-shadow: 0 10px 24px rgba(255,111,165,.4);
+  }
+  button:focus-visible{ outline:3px solid var(--navy); outline-offset:2px; }
+  button:disabled{ opacity:.7; cursor:default; }
+
+  .thank-you{ text-align:center; }
+  .thank-you .moon-badge{ font-size:48px; }
+  .thank-you h2{ text-align:center; }
+  .thank-you p{ font-size:16px; font-weight:600; }
+
+  [hidden]{ display:none !important; }
+</style>
+</head>
+<body>
+
+<div class="stars" aria-hidden="true">
+  <span style="width:6px;height:6px; top:20px; left:10%;"></span>
+  <span style="width:4px;height:4px; top:60px; left:30%;"></span>
+  <span style="width:8px;height:8px; top:40px; left:75%;"></span>
+  <span style="width:5px;height:5px; top:100px; left:55%;"></span>
+  <span style="width:4px;height:4px; top:140px; left:85%;"></span>
+  <span style="width:6px;height:6px; top:180px; left:20%;"></span>
+</div>
+
+<main>
+  <header class="hero">
+    <div class="moon-badge">🌙</div>
+    <h1>Luna is turning 5!</h1>
+    <p class="subtitle">and we want to celebrate with you</p>
+  </header>
+
+  <section class="card">
+    <div class="info-grid">
+      <div class="info-item">
+        <span class="info-icon">📅</span>
+        <div><span class="info-label">Date</span><span class="info-value">Saturday, September 26th</span></div>
+      </div>
+      <div class="info-item">
+        <span class="info-icon">🕛</span>
+        <div><span class="info-label">Time</span><span class="info-value">12:00 – 3:00 PM</span></div>
+      </div>
+      <div class="info-item">
+        <span class="info-icon">📍</span>
+        <div><span class="info-label">Where</span><span class="info-value">FunZ Trampoline Park<br>443 E Main St, Westfield, MA 01085</span></div>
+      </div>
+      <div class="info-item">
+        <span class="info-icon">🎉</span>
+        <div><span class="info-label">What</span><span class="info-value">3 hours of free play, pizza, snacks, ice cream, water & juice</span></div>
+      </div>
+    </div>
+    <p class="info-note">🧒🧒 Siblings are welcome and included in the celebration!</p>
+    <p class="deadline">Please RSVP by Tuesday, September 8th</p>
+  </section>
+
+  <div class="photo-frame" id="photoFrame">
+    <span>Luna's photo goes here</span>
+  </div>
+
+  <section class="card" id="formSection">
+    <h2>RSVP</h2>
+    <form id="rsvpForm">
+      <label>Child's Name
+        <input required name="childName" autocomplete="off">
+      </label>
+      <label>Parent(s) That Will Bring the Child
+        <input required name="parentNames" autocomplete="off">
+      </label>
+      <label>Number of Siblings
+        <input type="number" min="0" value="0" name="numSiblings">
+      </label>
+      <label>Email Contact
+        <input type="email" required name="email" autocomplete="off">
+      </label>
+      <button type="submit">
+        <span>🌙</span> Submit <span>🌙</span>
+      </button>
+    </form>
+  </section>
+
+  <section class="card thank-you" id="thankYouSection" hidden>
+    <div class="moon-badge">🌙</div>
+    <h2>We are stoked to celebrate with you!!</h2>
+    <p>Look out for a confirmation email.</p>
+  </section>
+</main>
+
+<script>
+  // Paste your Google Apps Script Web App URL here once deployed
+  const APPS_SCRIPT_URL = "PASTE_YOUR_WEB_APP_URL_HERE";
+
+  document.getElementById('rsvpForm').addEventListener('submit', async function(e){
+    e.preventDefault();
+    const form = e.target;
+    const btn = form.querySelector('button');
+    const payload = {
+      childName: form.childName.value,
+      parentNames: form.parentNames.value,
+      numSiblings: form.numSiblings.value,
+      email: form.email.value
+    };
+
+    btn.disabled = true;
+    btn.innerHTML = '<span>🌙</span> Sending... <span>🌙</span>';
+
+    try{
+      await fetch(APPS_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain' },
+        body: JSON.stringify(payload)
+      });
+    }catch(err){
+      console.error('RSVP submission error:', err);
+    }
+
+    document.getElementById('formSection').hidden = true;
+    document.getElementById('thankYouSection').hidden = false;
+  });
+</script>
+
+</body>
+</html>
